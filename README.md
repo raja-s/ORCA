@@ -11,4 +11,4 @@ The aim of this project is to build a simple C++ implementation of the ORCA algo
 
 # References
 
-<span id='ref-1'>[1]</span> van den Berg J., Guy S.J., Lin M., Manocha D. (2011) Reciprocal n-Body Collision Avoidance. In: Pradalier C., Siegwart R., Hirzinger G. (eds) Robotics Research. Springer Tracts in Advanced Robotics, vol 70. Springer, Berlin, Heidelberg
+<p id='ref-1'>[1] van den Berg J., Guy S.J., Lin M., Manocha D. (2011) Reciprocal n-Body Collision Avoidance. In: Pradalier C., Siegwart R., Hirzinger G. (eds) Robotics Research. Springer Tracts in Advanced Robotics, vol 70. Springer, Berlin, Heidelberg</p>
