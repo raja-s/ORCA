@@ -24,7 +24,7 @@ CLEAN=rm -f $(OBJECTS) src/demo/main.o
 # Argument-free target
 all: demo
 
-# Compile the program and clean up object files
+# Compile the program
 demo: $(OBJECTS) src/demo/main.o
 	mkdir -p bin
 	$(CXX) $(CXXFLAGS) $(OBJECTS) src/demo/main.o -o bin/demo $(LDLIBS)
@@ -38,7 +38,7 @@ run: demo
 # Compile the program with the "-g" flag and debug with gdb
 debug:
 	make CXXFLAGS="${CXXFLAGS} -g" demo
-	gdb demo
+	gdb bin/demo
 
 # Clean up object files
 clean:
