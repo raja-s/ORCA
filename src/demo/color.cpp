@@ -55,7 +55,7 @@ Color::Color(void) : red_(0.0), green_(0.0), blue_(0.0), alpha_(0.0) {}
  *                           three parameters
  */
 Color::Color(const double RED_HUE, const double GREEN_SATURATION, const double BLUE_VALUE,
-    const double ALPHA/* = 1.0*/, const bool RGB/* = true*/) : alpha_(CONSTRAIN_VALUE(ALPHA, 0.0, 1.0))
+    const double ALPHA/* = 1.0 */, const bool RGB/* = true */) : alpha_(CONSTRAIN_VALUE(ALPHA, 0.0, 1.0))
 {
     
     double redHue          = CONSTRAIN_VALUE(RED_HUE         , 0.0, 1.0);

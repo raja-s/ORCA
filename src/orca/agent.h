@@ -51,7 +51,7 @@ class Agent {
     inline double radius(void) const;
     
     // Other methods
-    bool arrived(void) const;
+    bool arrived(const double ARRIVAL_THRESHOLD = 0.0) const;
     
     void move(const double DELTA_T);
     void updateVelocity(const Vector& V);

@@ -53,8 +53,8 @@ double ORCA::arrivalThreshold_ = 0.0;
  * @param MAX_SPEED - The maximum speed to use as
  *                    input for the linear program
  */
-Point ORCA::solveLinearProgram(std::vector<HalfPlane>& H, const Vector& V_PREF,
-    const double MAX_SPEED)
+Point ORCA::solveLinearProgram(std::vector<HalfPlane>& H,
+    const Vector& V_PREF, const double MAX_SPEED)
 {
     // Number of input half-planes
     size_t n = H.size();
@@ -355,7 +355,7 @@ bool ORCA::converged(void) {
         
         // If one of the agents has not arrived
         // yet, then return false
-        if (!agent.arrived()) {
+        if (!agent.arrived(ORCA::arrivalThreshold_)) {
             return false;
         }
         
@@ -369,8 +369,8 @@ bool ORCA::converged(void) {
 /**
  * Moves agents for DELTA_T time one by one.
  * 
- * param DELTA_T - The time during which to move
- *                 the agents
+ * @param DELTA_T - The time during which to move
+ *                  the agents
  */
 void ORCA::moveAgents(const double DELTA_T) {
     

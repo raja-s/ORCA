@@ -80,7 +80,7 @@ Vector::~Vector(void) {}
  * @param NEW_NORM - The number to use when normalizing
  *                   this vector
  */
-const Vector& Vector::normalize(const double NEW_NORM/* = 1.0*/) {
+const Vector& Vector::normalize(const double NEW_NORM/* = 1.0 */) {
     double norm = this->norm();
     if (norm != 0) {
         this->x_ *= NEW_NORM / norm;
@@ -98,7 +98,7 @@ const Vector& Vector::normalize(const double NEW_NORM/* = 1.0*/) {
  * @param MAX_NORM - The number to which to limit this
  *                   vector's norm
  */
-const Vector& Vector::limitNorm(const double MAX_NORM/* = 1.0*/) {
+const Vector& Vector::limitNorm(const double MAX_NORM/* = 1.0 */) {
     if (this->norm() > MAX_NORM) {
         this->normalize(MAX_NORM);
     }

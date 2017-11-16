@@ -72,8 +72,16 @@ Agent::~Agent(void) {}
     Other methods
 */
 
-bool Agent::arrived(void) const {
-    return this->destination_.from(this->position_).norm() <= ORCA::arrivalThreshold();
+/**
+ * Tests whether this agent has reached its destination
+ * within the given threshold distance.
+ * 
+ * @param ARRIVAL_THRESHOLD - The maximum distance at which
+ *                            this agent would be considered
+ *                            to have reached its destination
+ */
+bool Agent::arrived(const double ARRIVAL_THRESHOLD/* = 0.0 */) const {
+    return this->destination_.from(this->position_).norm() <= ARRIVAL_THRESHOLD;
 }
 
 
@@ -85,8 +93,8 @@ bool Agent::arrived(void) const {
  *            #  p_new = p + v * dt  #
  *            ########################
  * 
- * param DELTA_T - The time during which to move
- *                 this agent
+ * @param DELTA_T - The time during which to move
+ *                  this agent
  */
 void Agent::move(const double DELTA_T) {
     this->position_ += this->velocity_ * DELTA_T;
@@ -99,7 +107,7 @@ void Agent::move(const double DELTA_T) {
  * the norm of this agent's preferred velocity in
  * case it exceeds it.
  * 
- * param V - The new velocity for this agent
+ * @param V - The new velocity for this agent
  */
 void Agent::updateVelocity(const Vector& V) {
     this->velocity_ = Vector(V).limitNorm(this->prefVelocity_);
