@@ -108,7 +108,7 @@ Point ORCA::solveLinearProgram(std::vector<HalfPlane>& H,
                 // no point on the circle satisfies the constraint introduced
                 // by h_i and we report that the program is infeasible
                 else {
-                    throw ProgramInfeasibleException();
+                    throw LinearProgramInfeasibleException();
                 }
             }
             // If the discriminant is equal to zero then...
@@ -139,7 +139,7 @@ Point ORCA::solveLinearProgram(std::vector<HalfPlane>& H,
                     
                     for (h_i = H.begin() ; h_i != H.end() ; h_i++) {
                         if (!h_i->contains(solution)) {
-                            throw ProgramInfeasibleException();
+                            throw LinearProgramInfeasibleException();
                         }
                     }
                     
@@ -205,7 +205,7 @@ Point ORCA::solveLinearProgram(std::vector<HalfPlane>& H,
                         // point on the bounding line of h_i satisfies h and
                         // we report that the linear program is infeasible
                         else {
-                            throw ProgramInfeasibleException();
+                            throw LinearProgramInfeasibleException();
                         }
                     }
                     
@@ -281,7 +281,7 @@ Point ORCA::solveLinearProgram(std::vector<HalfPlane>& H,
                         (left > right)
                     )
                 ) {
-                    throw ProgramInfeasibleException();
+                    throw LinearProgramInfeasibleException();
                 }
                 
                 // Project vMax onto h_i's bounding line

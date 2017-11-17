@@ -41,6 +41,6 @@ const char* LineHorizontalException::what(void) const throw() {
 /**
  * Returns the description of the exception thrown.
  */
-const char* ProgramInfeasibleException::what() const throw() {
+const char* LinearProgramInfeasibleException::what() const throw() {
     return "The linear program was found to be infeasible during an iteration of ORCA.";
 }

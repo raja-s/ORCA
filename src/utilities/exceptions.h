@@ -50,8 +50,8 @@ class LineHorizontalException : public std::exception {
     ORCA exception
 */
 
-// Class definition of ProgramInfeasibleException
-class ProgramInfeasibleException : public std::exception {
+// Class definition of LinearProgramInfeasibleException
+class LinearProgramInfeasibleException : public std::exception {
     
     public:
     
