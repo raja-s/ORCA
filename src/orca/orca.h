@@ -49,14 +49,15 @@ class ORCA {
     // Other methods
     static inline int agentCount(void);
     
+    static void initialize(const std::vector<Agent>& AGENTS, const double TAU,
+        const double DELTA_T, const double ARRIVAL_THRESHOLD);
+    
     static Point solveLinearProgram(std::vector<HalfPlane>& H, const Vector& V_PREF,
         const double MAX_SPEED);
     
-    static void initialize(const std::vector<Agent>& AGENTS, const double TAU,
-        const double DELTA_T, const double ARRIVAL_THRESHOLD);
-    static bool converged(void);
-    static void moveAgents(const double DELTA_T);
     static void iteration(void);
+    static void moveAgents(const double DELTA_T);
+    static bool converged(void);
     static void finalize(void);
     
 };

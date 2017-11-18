@@ -40,6 +40,24 @@ double ORCA::arrivalThreshold_ = 0.0;
 */
 
 /**
+ * Initializes the system with a set of agents, a value of
+ * tau, and an arrival threshold given as parameters.
+ * 
+ * @param AGENTS            - The agents to register in the system
+ * @param TAU               - The value of tau to use for the ORCA
+ *                            system
+ * @param ARRIVAL_THRESHOLD - The arrival threshold to be used
+ */
+void ORCA::initialize(const std::vector<Agent>& AGENTS, const double TAU,
+    const double DELTA_T, const double ARRIVAL_THRESHOLD)
+{
+    ORCA::agents_ = std::vector<Agent>(AGENTS);
+    ORCA::tau_ = TAU;
+    ORCA::deltaT_ = DELTA_T;
+    ORCA::arrivalThreshold_ = ARRIVAL_THRESHOLD;
+}
+
+/**
  * Solves a linear program given a set of half-planes
  * as input, as well as a preferred velocity and a
  * maximum speed.
@@ -326,64 +344,6 @@ Point ORCA::solveLinearProgram(std::vector<HalfPlane>& H,
 }
 
 /**
- * Initializes the system with a set of agents, a value of
- * tau, and an arrival threshold given as parameters.
- * 
- * @param AGENTS            - The agents to register in the system
- * @param TAU               - The value of tau to use for the ORCA
- *                            system
- * @param ARRIVAL_THRESHOLD - The arrival threshold to be used
- */
-void ORCA::initialize(const std::vector<Agent>& AGENTS, const double TAU,
-    const double DELTA_T, const double ARRIVAL_THRESHOLD)
-{
-    ORCA::agents_ = std::vector<Agent>(AGENTS);
-    ORCA::tau_ = TAU;
-    ORCA::deltaT_ = DELTA_T;
-    ORCA::arrivalThreshold_ = ARRIVAL_THRESHOLD;
-}
-
-/**
- * Tests whether the system has converged, in the
- * sense of that all agents are within the arrival
- * threshold from their respective destinations.
- */
-bool ORCA::converged(void) {
-    
-    // Loop through the agents
-    for (Agent& agent : ORCA::agents_) {
-        
-        // If one of the agents has not arrived
-        // yet, then return false
-        if (!agent.arrived(ORCA::arrivalThreshold_)) {
-            return false;
-        }
-        
-    }
-    
-    // If all agents have arrived,
-    // then return true
-    return true;
-}
-
-/**
- * Moves agents for DELTA_T time one by one.
- * 
- * @param DELTA_T - The time during which to move
- *                  the agents
- */
-void ORCA::moveAgents(const double DELTA_T) {
-    
-    // Move agents
-    for (Agent& agent : ORCA::agents_) {
-        
-        agent.move(DELTA_T);
-        
-    }
-    
-}
-
-/**
  * Executes a single iteration of ORCA.
  */
 void ORCA::iteration(void) {
@@ -410,6 +370,46 @@ void ORCA::iteration(void) {
         newVelocity++;
         
     }
+}
+
+/**
+ * Moves agents for DELTA_T time one by one.
+ * 
+ * @param DELTA_T - The time during which to move
+ *                  the agents
+ */
+void ORCA::moveAgents(const double DELTA_T) {
+    
+    // Move agents
+    for (Agent& agent : ORCA::agents_) {
+        
+        agent.move(DELTA_T);
+        
+    }
+    
+}
+
+/**
+ * Tests whether the system has converged, in the
+ * sense of that all agents are within the arrival
+ * threshold from their respective destinations.
+ */
+bool ORCA::converged(void) {
+    
+    // Loop through the agents
+    for (Agent& agent : ORCA::agents_) {
+        
+        // If one of the agents has not arrived
+        // yet, then return false
+        if (!agent.arrived(ORCA::arrivalThreshold_)) {
+            return false;
+        }
+        
+    }
+    
+    // If all agents have arrived,
+    // then return true
+    return true;
 }
 
 /**
