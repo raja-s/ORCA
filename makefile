@@ -20,29 +20,29 @@ BINARIES_PATH=bin
 BINARY=demo
 
 # Clean commands
-CLEAN_OBJECTS=rm -f $(OBJECTS) 
+CLEAN_OBJECTS=rm -f $(OBJECTS)
 CLEAN_BINARIES=rm -rf $(BINARIES_PATH)
 
 # Non-file based targets
-.PHONY: all demo run debug clean cleanobj cleanbin
+.PHONY: all build run debug clean cleanobj cleanbin
 
 # Argument-free target
-all: demo
+all: build
 
-# Compile the program
-demo: $(OBJECTS)
+# Compile the code
+build: $(OBJECTS)
 	mkdir -p $(BINARIES_PATH)
 	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(BINARIES_PATH)/$(BINARY) $(LDLIBS)
 
-# Compile the program, run it, then immediately remove the binary
-run: demo
+# Compile the code, clean up the object files, run the program, then clean up the binary files
+run: build
 	$(CLEAN_OBJECTS)
 	$(BINARIES_PATH)/$(BINARY)
 	$(CLEAN_BINARIES)
 
-# Compile the program with the "-g" flag and debug with gdb
+# Compile the code with the "-g" flag and debug the program with gdb
 debug:
-	make CXXFLAGS="${CXXFLAGS} -g" demo
+	make CXXFLAGS="${CXXFLAGS} -g" build
 	gdb $(BINARIES_PATH)/$(BINARY)
 
 # Clean up everything
